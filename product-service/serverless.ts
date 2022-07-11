@@ -1,13 +1,12 @@
 import type { AWS } from '@serverless/typescript';
 
-// import hello from '@functions/hello';
 import getProductsList from '@functions/getProductsList'
 import getProductsById from '@functions/getProductsById'
 
 const serverlessConfiguration: AWS = {
   service: 'product-service',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild'],
+  plugins: ['serverless-esbuild', 'serverless-aws-documentation'],
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
@@ -22,7 +21,6 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
     },
   },
-  // import the function via paths
   functions: { 
     getProductsList,
     getProductsById
@@ -39,7 +37,48 @@ const serverlessConfiguration: AWS = {
       platform: 'node',
       concurrency: 10,
     },
+    documentation: {
+      api: {
+        info: {
+          version: '3',
+          title: 'Shop AWS Node API',
+          description: 'This api contains all endpoints to provide data for react frontend app',
+          contact: {
+            name: 'Roberto Payeras',
+          },
+      },
+      models: [
+        {
+          name: 'MessageResponse',
+          contentType: "application/json",
+          schema: {
+            type: 'object',
+            properties: {
+              data: {
+                type: 'string'
+              }
+            }
+          }
+        },
+        {
+          name: '400JsonResponse',
+          contentType: "application/json",
+          schema: {
+            type: 'object',
+            properties: {
+              message: {
+                type: 'string'
+              },
+              statusCode: {
+                type: 'number'
+              }
+            }
+          }
+        },
+      ],
+    }
   },
-};
+}
+}
 
-module.exports = serverlessConfiguration;
+module.exports = serverlessConfiguration

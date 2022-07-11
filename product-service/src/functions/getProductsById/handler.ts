@@ -1,14 +1,14 @@
 import validator from 'validator'
 
-import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
-import { formatJSONResponse, createErrorResponse } from '@libs/api-gateway';
-import { middyfy } from '@libs/lambda';
+// import type { ValidatedEventAPIGatewayProxyEvent } from '../../libs/api-gateway';
+import { formatJSONResponse, createErrorResponse } from '../../libs/api-gateway';
+import { middyfy } from '../../libs/lambda';
 
-import schema from './schema';
+// import schema from './schema';
 
 import products from '../products.json'
 
-const getProductsById: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event, context, callback) => {
+export const getProductsById = async (event) => {
   const {productId} = event.pathParameters;
 
   if (!validator.isAlphanumeric(productId)) {
@@ -17,8 +17,12 @@ const getProductsById: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async
 
   const product = products.find(product => product.id === Number(productId))
 
+  if (!product) {
+    return createErrorResponse(400, 'Product not found');
+  }
+
   return formatJSONResponse({
-    product,
+    data: product,
     event,
   });
 };
