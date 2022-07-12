@@ -9,7 +9,7 @@ import products from "../products.json";
 export const getProductsList = async (event) => {
   return formatJSONResponse({
     data: products,
-    event,
+    // event,
   });
 };
 

@@ -26,7 +26,7 @@ export const getProductsById = async (event) => {
 
   return formatJSONResponse({
     data: product,
-    event,
+    // event,
   });
 };
 

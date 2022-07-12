@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "This api contains all endpoints to provide data for react frontend app",
-    "version" : "2022-07-12T09:32:54Z",
+    "version" : "2022-07-12T09:49:52Z",
     "title" : "product-service-dev",
     "contact" : {
       "name" : "Roberto Payeras"
