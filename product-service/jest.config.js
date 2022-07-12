@@ -174,11 +174,11 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   // transform: undefined,
-    transform: {
-      ".(ts|tsx)": "ts-jest"
-    },
-    testRegex: "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    moduleFileExtensions: ["ts", "tsx", "js"]
+  transform: {
+    ".(ts|tsx)": "ts-jest",
+  },
+  testRegex: "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+  moduleFileExtensions: ["ts", "tsx", "js"],
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
   //   "/node_modules/",

@@ -4,13 +4,16 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "build:doc": "sls downloadDocumentation --outputFileName=swagger.json",
+    "deploy": "sls deploy && npm run build:doc"
   },
   "engines": {
     "node": ">=14.15.0"
   },
   "dependencies": {
     "@middy/core": "^2.5.3",
+    "@middy/http-cors": "^3.1.0",
     "@middy/http-json-body-parser": "^2.5.3",
     "validator": "^13.7.0"
   },
@@ -18,7 +21,7 @@
     "@serverless/typescript": "^3.0.0",
     "@types/aws-lambda": "^8.10.71",
     "@types/jest": "^28.1.4",
-    "@types/node": "^14.14.25",
+    "@types/node": "^14.18.21",
     "esbuild": "^0.14.11",
     "jest": "^28.1.2",
     "json-schema-to-ts": "^1.5.0",
