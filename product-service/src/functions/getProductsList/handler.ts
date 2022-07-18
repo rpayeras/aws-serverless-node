@@ -1,12 +1,12 @@
 // import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { formatJSONResponse } from "../../libs/api-gateway";
 import { middyfy } from "../../libs/lambda";
-
+import { queryProductsList } from "../../services";
 // import schema from './schema';
 
-import products from "../products.json";
-
 export const getProductsList = async (event) => {
+  const products = await queryProductsList();
+  
   return formatJSONResponse({
     data: products,
     // event,

@@ -1,3 +1,4 @@
+import { queryProductsById } from "src/services";
 import validator from "validator";
 
 // import type { ValidatedEventAPIGatewayProxyEvent } from '../../libs/api-gateway';
@@ -9,18 +10,16 @@ import { middyfy } from "../../libs/lambda";
 
 // import schema from './schema';
 
-import products from "../products.json";
-
 export const getProductsById = async (event) => {
   const { productId } = event.pathParameters;
 
-  if (!validator.isAlphanumeric(productId)) {
-    return createErrorResponse(400, "Product not found");
+  if (!validator.isUUID(productId)) {
+    return createErrorResponse(400, "Format of productId is invalid");
   }
 
-  const product = products.find((product) => product.id === Number(productId));
+  const product = await queryProductsById(productId);
 
-  if (!product) {
+  if (product.length === 0) {
     return createErrorResponse(400, "Product not found");
   }
 
