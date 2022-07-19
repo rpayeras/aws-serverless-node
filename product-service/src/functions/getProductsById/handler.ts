@@ -11,6 +11,8 @@ import { middyfy } from "../../libs/lambda";
 // import schema from './schema';
 
 export const getProductsById = async (event) => {
+  console.log(event)
+
   const { productId } = event.pathParameters;
 
   if (!validator.isUUID(productId)) {

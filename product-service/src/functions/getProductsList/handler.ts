@@ -5,6 +5,8 @@ import { queryProductsList } from "../../services";
 // import schema from './schema';
 
 export const getProductsList = async (event) => {
+  console.log(event)
+
   const products = await queryProductsList();
   
   return formatJSONResponse({

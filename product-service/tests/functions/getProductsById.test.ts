@@ -1,5 +1,5 @@
+import { getProductsById } from "@functions/getProductsById/handler";
 import { awsParamsMock } from "../mocks/mockParams";
-import { getProductsById } from "../../src/functions/getProductsById/handler";
 
 describe("getProductsById tests", () => {
   test("should return a product by id", async () => {

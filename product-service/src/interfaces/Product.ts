@@ -4,3 +4,8 @@ export interface Product{
   description: string;
   price: number;
 }
+
+export interface Stock{
+  productId: string;
+  count: number;
+}

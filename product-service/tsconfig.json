@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["ESNext"],
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": true,
@@ -18,7 +18,13 @@
       "@libs/*": ["src/libs/*"]
     }
   },
-  "include": ["src/**/*.ts", "serverless.ts", "tests/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "serverless.ts",
+    "tests/**/*.ts",
+    "tests/mocks/mockParams.js",
+    "tests/mocks/mockDatabase.js"
+  ],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",
