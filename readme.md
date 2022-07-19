@@ -26,6 +26,12 @@ sls invoke local --function getProductsList --path ./src/functions/getProductsLi
 sls invoke local --function getProductsById --path ./src/functions/getProductsById/mock.json
 ```
 
+### PostProducts
+
+```bash
+sls invoke local --function postProducts --path ./src/functions/postProducts/mock.json
+```
+
 ## Working with each service
 
 You should enter into each service folder and execute next operations:
