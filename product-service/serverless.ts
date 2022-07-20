@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import "dotenv/config";
 
 import type { AWS } from "@serverless/typescript";
 
@@ -9,7 +9,11 @@ import postProducts from "@functions/postProducts";
 const serverlessConfiguration: AWS = {
   service: "product-service",
   frameworkVersion: "3",
-  plugins: ["serverless-esbuild", "serverless-aws-documentation"],
+  plugins: [
+    "serverless-esbuild",
+    "serverless-auto-swagger",
+    "serverless-offline",
+  ],
   provider: {
     name: "aws",
     runtime: "nodejs16.x",
@@ -27,13 +31,13 @@ const serverlessConfiguration: AWS = {
   functions: {
     getProductsList,
     getProductsById,
-    postProducts
+    postProducts,
   },
   package: { individually: true },
   custom: {
     esbuild: {
       bundle: true,
-      minify: false,
+      minify: true,
       sourcemap: true,
       exclude: ["aws-sdk"],
       target: "node16",
@@ -41,47 +45,18 @@ const serverlessConfiguration: AWS = {
       platform: "node",
       concurrency: 10,
     },
-    documentation: {
-      api: {
-        info: {
-          version: "3",
-          title: "Shop AWS Node API",
-          description:
-            "This api contains all endpoints to provide data for react frontend app",
-          contact: {
-            name: "Roberto Payeras",
-          },
-        },
-        models: [
-          {
-            name: "RequestResponse",
-            contentType: "application/json",
-            schema: {
-              type: "object",
-              properties: {
-                data: {
-                  type: "string",
-                },
-              },
-            },
-          },
-          {
-            name: "NotFoundResponse",
-            contentType: "application/json",
-            schema: {
-              type: "object",
-              properties: {
-                message: {
-                  type: "string",
-                },
-                statusCode: {
-                  type: "number",
-                },
-              },
-            },
-          },
-        ],
-      },
+    autoswagger: {
+      title: "string",
+      swaggerFiles: [
+        "./doc/endpointFromPlugin.json",
+        "./doc/iCannotPutThisInHttpEvent.json",
+        "./doc/aDefinitionWithoutTypescript.json",
+      ],
+      swaggerPath: "string",
+      useStage: true,
+      basePath: "/products",
+      host: "https://dg6etd0ogl.execute-api.eu-west-1.amazonaws.com/dev",
+      schemes: ["https"],
     },
   },
 };

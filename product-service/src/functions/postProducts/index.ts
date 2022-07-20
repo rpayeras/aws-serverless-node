@@ -1,4 +1,4 @@
-import schema from './schema';
+import schema from "./schema";
 import { handlerPath } from "../../libs/handler-resolver";
 
 export default {
@@ -6,32 +6,29 @@ export default {
   events: [
     {
       http: {
+        summary: "Create a new product",
+        description: "Creates a new product passing post parameters",
+        swaggerTags: ["Products"],
         method: "post",
         path: "products",
         cors: true,
         request: {
           schemas: {
-            'application/json': schema,
+            "application/json": schema,
           },
         },
-        documentation: {
-          summary: "Create a new product",
-          tags: ["Tag1"],
-          description: "Creates a new product with all his properties",
-          methodResponses: [
-            {
-              statusCode: "200",
-              responseBody: {
-                data: "Product",
-              },
-            },
-            {
-              statusCode: "500",
-              responseBody: {
-                message: "Error message",
-              },
-            },
-          ],
+        consumes: [],
+        produces: ["application/json"],
+        responseData: {
+          200: {
+            description: "A product",
+            bodyType: "Product",
+          },
+          400: {
+            description: "failed Post",
+            bodyType: "Error message",
+          },
+          502: "server error",
         },
       },
     },

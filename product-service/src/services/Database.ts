@@ -25,4 +25,4 @@ const poolOptions = {
   port: process.env.PG_PORT,
 };
 
-export const dbConnection = () => new Pool(poolOptions);
+export const dbConnection = new Pool(poolOptions);

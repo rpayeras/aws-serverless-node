@@ -6,6 +6,9 @@ export default {
   events: [
     {
       http: {
+        summary: "Get a list of products",
+        description: "Get a list of products with all their properties",
+        swaggerTags: ["Products"],
         method: "get",
         path: "products",
         cors: true,
@@ -14,24 +17,18 @@ export default {
           //   'application/json': schema,
           // },
         },
-        documentation: {
-          summary: "Get a list of products",
-          tags: ["Tag1"],
-          description: "Get a list of products with all their properties",
-          methodResponses: [
-            {
-              statusCode: "200",
-              responseBody: {
-                data: "List of products",
-              },
-            },
-            {
-              statusCode: "400",
-              responseBody: {
-                message: "Error message",
-              },
-            },
-          ],
+        consumes: [],
+        produces: ["application/json"],
+        responseData: {
+          200: {
+            description: "List of products",
+            bodyType: "data",
+          },
+          400: {
+            description: "failed Post",
+            bodyType: "Error message",
+          },
+          502: "server error",
         },
       },
     },

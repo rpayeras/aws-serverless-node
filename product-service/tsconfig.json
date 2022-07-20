@@ -18,13 +18,7 @@
       "@libs/*": ["src/libs/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "serverless.ts",
-    "tests/**/*.ts",
-    "tests/mocks/mockParams.js",
-    "tests/mocks/mockDatabase.js"
-  ],
+  "include": ["src/**/*.ts", "serverless.ts", "tests/**/*.ts"],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",
