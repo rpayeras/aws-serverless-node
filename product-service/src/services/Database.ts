@@ -1,3 +1,4 @@
+import "dotenv/config";
 // import { Signer } from "@aws-sdk/rds-signer";
 import { Pool, types } from "pg";
 

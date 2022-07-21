@@ -1,25 +1,55 @@
-import { DataType, newDb } from "pg-mem";
-import * as fs from "fs/promises";
-import { v4 } from "uuid";
+import { dbConnection } from "../../src/services/Database";
+import { readJson } from "../../src/helpers/files";
 
 export const createMockDatabase = async () => {
-  const db = newDb();
+  await dbConnection.query('create extension if not exists "uuid-ossp"');
 
-  db.registerExtension("uuid-ossp", (schema) => {
-    schema.registerFunction({
-      name: "uuid_generate_v4",
-      returns: DataType.uuid,
-      implementation: v4,
-      impure: true,
-    });
+  await dbConnection.query("drop table if exists stocks cascade");
+  await dbConnection.query("drop table if exists products cascade");
+
+  await dbConnection.query(`create table products (
+      id uuid not null default uuid_generate_v4() primary key,
+      title text not null,
+      description text not null,
+      price integer not null
+    )`);
+
+  await dbConnection.query(`create table stocks(
+    product_id uuid primary key,
+    count integer not null default 0
+  )`);
+
+  await dbConnection.query(
+    "alter table stocks add constraint fk_stocks_products foreign key (product_id) references products(id)"
+  );
+
+  const products = await readJson("./tests/mocks/products.json");
+
+  let inserts = [];
+
+  products.forEach(({ id, name, description, price }) => {
+    inserts.push(
+      dbConnection.query(
+        "INSERT INTO products(id, title, description, price) VALUES ($1, $2, $3, $4)",
+        [id, name, description, price]
+      )
+    );
   });
 
-  const { Pool } = db.adapters.createPg();
-  const pool = new Pool();
+  await Promise.all(inserts);
+  inserts = [];
 
-  const queries = await fs.readFile("./tests/mocks/seed.sql", "utf8");
+  const stocks = await readJson("./tests/mocks/stocks.json");
 
-  await pool.query(queries);
+  stocks.forEach(({ productId, count }) => {
+    inserts.push(
+      dbConnection.query(
+        "INSERT INTO stocks(product_id, count) VALUES ($1, $2)",
+        [productId, count]
+      )
+    );
+  });
 
-  return pool;
+  await Promise.all(inserts);
+  inserts = [];
 };

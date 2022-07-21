@@ -1,4 +1,4 @@
-import { queryProductsById } from "src/services";
+import { queryProductsById } from "../../services";
 import validator from "validator";
 
 // import type { ValidatedEventAPIGatewayProxyEvent } from '../../libs/api-gateway';
@@ -11,7 +11,7 @@ import { middyfy } from "../../libs/lambda";
 // import schema from './schema';
 
 export const getProductsById = async (event) => {
-  console.log(event)
+  console.log(event);
 
   const { productId } = event.pathParameters;
 

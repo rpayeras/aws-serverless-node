@@ -4,7 +4,7 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "DOTENV_CONFIG_PATH=./.env.test jest --watchAll",
     "build:doc": "sls downloadDocumentation --outputFileName=swagger.json",
     "deploy": "sls deploy && npm run build:doc"
   },

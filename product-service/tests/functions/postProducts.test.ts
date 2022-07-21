@@ -1,36 +1,23 @@
 import { awsParamsMock } from "../mocks/mockParams";
-import { getProductsById } from "@functions/getProductsById/handler";
+import { postProducts } from "../../src/functions/postProducts/handler";
 
 describe("getProductsById tests", () => {
-  test("should return a product by id", async () => {
+  test("should insert a product", async () => {
     const { event } = awsParamsMock;
 
     const eventMod = {
       ...event,
-      pathParameters: {
-        productId: "1",
+      method: "POST",
+      params: {
+        title: "title test",
+        description: "description test",
+        price: 100,
       },
     };
 
-    const res = await getProductsById(eventMod);
+    const res = await postProducts(eventMod);
 
     expect(res.statusCode).toBe(200);
-    expect(JSON.parse(res.body).data.id).toBeGreaterThan(0);
-  });
-
-  test("should return not found when id not exists", async () => {
-    const { event } = awsParamsMock;
-
-    const eventMod = {
-      ...event,
-      pathParameters: {
-        productId: "testparam",
-      },
-    };
-
-    const res = await getProductsById(eventMod);
-
-    expect(res.statusCode).toBe(400);
-    expect(res.body).toBe("Product not found");
+    expect(JSON.parse(res.body)).toBeTruthy();
   });
 });
