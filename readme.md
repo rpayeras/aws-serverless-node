@@ -4,25 +4,21 @@ This project contains all serverless projects for deploy to aws
 
 ## Env variables
 
-Fill all variables from .env.sample and rename it to .env to test locally, copy it and rename it to .env.test for run testing suites
+Fill all variables from .env.sample and rename it to .env to test locally on each service folder, copy and rename it to .env.test for running testing suites
 
-## Docker
+## Testing and docker
 
-A docker image with postgres database is mandatory in order to run all tests and run applications locally [Docker docs](https://docs.docker.com/get-docker/)
+Docker image with postgres database is mandatory in order to run all tests and run lambdas locally [Docker docs](https://docs.docker.com/get-docker/)
 
 ```bash
 docker-compose up -d
 ```
 
-## Testing
+Run tests
 
 ```bash
 npm run test
 ```
-
-## Swagger
-
-Is generated automatically when we deploy to aws
 
 ## Serverless operations
 
@@ -32,13 +28,33 @@ Is generated automatically when we deploy to aws
 serverless create --template aws-nodejs-typescript --path product-service
 ```
 
-### Check functions locally
+## Check functions locally
 
 We must enter into each service to develop and run lambdas.
 
+### Products services
+
+#### GetProductsList
+
 ```bash
-serverless invoke local --function hello //With data --data '{"body": {"name":"John"}}' //With custom events parameters --path ./src/functions/getProductsById/mock.json
+sls invoke local --function getProductsList --path ./tests/mocks/requests/getProductsList.json
 ```
+
+#### GetProductsById
+
+```bash
+sls invoke local --function getProductsById --path ./tests/mocks/requests/getProductsById.json
+```
+
+#### PostProducts
+
+```bash
+sls invoke local --function postProducts --path ./tests/mocks/requests/postProducts.json
+```
+
+## Swagger
+
+Is generated automatically when we deploy to aws
 
 ### Deploy service
 
@@ -46,24 +62,4 @@ We must enter into each service to develop and run lambdas.
 
 ```bash
 npm run deploy
-```
-
-## Products services
-
-### GetProductsList
-
-```bash
-sls invoke local --function getProductsList --path ./src/functions/getProductsList/mock.json
-```
-
-### GetProductsById
-
-```bash
-sls invoke local --function getProductsById --path ./src/functions/getProductsById/mock.json
-```
-
-### PostProducts
-
-```bash
-sls invoke local --function postProducts --path ./src/functions/postProducts/mock.json
 ```
