@@ -3,7 +3,6 @@ import { awsParamsMock } from "../mocks/mockParams";
 
 describe("getProductsList tests", () => {
   test("should return a product list", async () => {
-    console.log(process.env.PG_HOST);
     const { event } = awsParamsMock;
     const res = await getProductsList(event);
 

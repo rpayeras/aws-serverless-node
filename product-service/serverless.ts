@@ -26,6 +26,11 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
+      PG_HOST: "rds-cloud-x-database.cpkmusildfs6.eu-west-1.rds.amazonaws.com",
+      PG_USER: "postgres",
+      PG_PASSWORD: "Aok8q6vi94eo3j",
+      PG_DATABASE: "cloud_x",
+      PG_PORT: "5432",
     },
   },
   functions: {
@@ -47,11 +52,7 @@ const serverlessConfiguration: AWS = {
     },
     autoswagger: {
       title: "string",
-      swaggerFiles: [
-        "./doc/endpointFromPlugin.json",
-        "./doc/iCannotPutThisInHttpEvent.json",
-        "./doc/aDefinitionWithoutTypescript.json",
-      ],
+      swaggerFiles: [],
       swaggerPath: "string",
       useStage: true,
       basePath: "/products",

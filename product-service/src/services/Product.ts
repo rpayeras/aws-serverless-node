@@ -33,7 +33,7 @@ export async function createProductAndStock(productParam: Partial<Product>) {
     await dbConnection.query("BEGIN");
 
     const product = await createProduct(productParam);
-    console.log(product);
+
     const { id } = product;
 
     if (!id) throw new Error("Error creating product with stock");

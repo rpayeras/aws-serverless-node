@@ -3,8 +3,8 @@ import validator from "validator";
 
 // import type { ValidatedEventAPIGatewayProxyEvent } from '../../libs/api-gateway';
 import {
-  formatJSONResponse,
-  createErrorResponse,
+  getFormatResponse,
+  getFormatErrorResponse,
 } from "../../libs/api-gateway";
 import { middyfy } from "../../libs/lambda";
 
@@ -16,16 +16,16 @@ export const getProductsById = async (event) => {
   const { productId } = event.pathParameters;
 
   if (!validator.isUUID(productId)) {
-    return createErrorResponse(400, "Format of productId is invalid");
+    return getFormatErrorResponse(400, "Format of productId is invalid");
   }
 
   const product = await queryProductsById(productId);
 
   if (product.length === 0) {
-    return createErrorResponse(400, "Product not found");
+    return getFormatErrorResponse(400, "Product not found");
   }
 
-  return formatJSONResponse({
+  return getFormatResponse({
     data: product,
     // event,
   });
