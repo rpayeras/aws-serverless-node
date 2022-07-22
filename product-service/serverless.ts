@@ -13,7 +13,9 @@ const serverlessConfiguration: AWS = {
     "serverless-esbuild",
     "serverless-auto-swagger",
     "serverless-offline",
+    "serverless-dotenv-plugin",
   ],
+  useDotenv: true,
   provider: {
     name: "aws",
     runtime: "nodejs16.x",
@@ -26,11 +28,11 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
-      PG_HOST: "rds-cloud-x-database.cpkmusildfs6.eu-west-1.rds.amazonaws.com",
-      PG_USER: "postgres",
-      PG_PASSWORD: "Aok8q6vi94eo3j",
-      PG_DATABASE: "cloud_x",
-      PG_PORT: "5432",
+      PG_HOST: process.env.PG_HOST,
+      PG_USER: process.env.PG_USER,
+      PG_PASSWORD: process.env.PG_PASSWORD,
+      PG_DATABASE: process.env.PG_DATABASE,
+      PG_PORT: process.env.PG_PORT,
     },
   },
   functions: {
