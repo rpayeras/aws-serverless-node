@@ -1,14 +1,14 @@
 [
   {
     "productId": "513e9593-e66f-4582-ae71-f902384425f4",
-    "count": 10
+    "quantity": 10
   },
   {
     "productId": "513e9593-e66f-4582-ae71-f902384425f5",
-    "count": 15
+    "quantity": 15
   },
   {
     "productId": "513e9593-e66f-4582-ae71-f902384425f6",
-    "count": 25
+    "quantity": 25
   }
 ]
