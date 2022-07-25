@@ -2,7 +2,7 @@
             module.exports = {
   "swagger": "2.0",
   "info": {
-    "title": "string",
+    "title": "Shop Node Js Aws Serverless",
     "version": "1"
   },
   "paths": {
@@ -21,19 +21,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "List of products",
-            "schema": {
-              "$ref": "#/definitions/data"
-            }
-          },
-          "400": {
-            "description": "failed Post",
-            "schema": {
-              "$ref": "#/definitions/Error message"
-            }
-          },
-          "502": {
-            "description": "server error"
+            "description": "Ok response with object"
           }
         }
       },
@@ -51,19 +39,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "A product",
-            "schema": {
-              "$ref": "#/definitions/Product"
-            }
-          },
-          "400": {
-            "description": "failed Post",
-            "schema": {
-              "$ref": "#/definitions/Error message"
-            }
-          },
-          "502": {
-            "description": "server error"
+            "description": "Ok response with product inserted"
           }
         }
       }
@@ -90,28 +66,72 @@
         ],
         "responses": {
           "200": {
-            "description": "A product",
-            "schema": {
-              "$ref": "#/definitions/data"
-            }
+            "description": "Ok response with object"
           },
           "400": {
-            "description": "failed Post",
-            "schema": {
-              "$ref": "#/definitions/Error message"
-            }
-          },
-          "502": {
-            "description": "server error"
+            "description": "Product not found response"
           }
         }
       }
     }
   },
-  "definitions": {},
+  "definitions": {
+    "Response": {
+      "properties": {
+        "statusCode": {
+          "title": "Response.statusCode",
+          "type": "number"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Response.headers",
+          "type": "object"
+        },
+        "body": {
+          "title": "Response.body",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statusCode",
+        "body"
+      ],
+      "additionalProperties": false,
+      "title": "Response",
+      "type": "object"
+    },
+    "ErrorResponse": {
+      "properties": {
+        "statusCode": {
+          "title": "ErrorResponse.statusCode",
+          "type": "number"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "ErrorResponse.headers",
+          "type": "object"
+        },
+        "body": {
+          "title": "ErrorResponse.body",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statusCode",
+        "body"
+      ],
+      "additionalProperties": false,
+      "title": "ErrorResponse",
+      "type": "object"
+    }
+  },
   "securityDefinitions": {},
-  "basePath": "/products",
-  "host": "https://dg6etd0ogl.execute-api.eu-west-1.amazonaws.com/dev",
+  "basePath": "/dev",
+  "host": "dg6etd0ogl.execute-api.eu-west-1.amazonaws.com",
   "schemes": [
     "https"
   ]

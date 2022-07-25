@@ -12,8 +12,8 @@ const serverlessConfiguration: AWS = {
   plugins: [
     "serverless-esbuild",
     "serverless-auto-swagger",
-    "serverless-offline",
     "serverless-dotenv-plugin",
+    "serverless-offline",
   ],
   useDotenv: true,
   provider: {
@@ -28,11 +28,6 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
-      PG_HOST: process.env.PG_HOST,
-      PG_USER: process.env.PG_USER,
-      PG_PASSWORD: process.env.PG_PASSWORD,
-      PG_DATABASE: process.env.PG_DATABASE,
-      PG_PORT: process.env.PG_PORT,
     },
   },
   functions: {
@@ -44,7 +39,7 @@ const serverlessConfiguration: AWS = {
   custom: {
     esbuild: {
       bundle: true,
-      minify: true,
+      minify: false,
       sourcemap: true,
       exclude: ["aws-sdk"],
       target: "node16",
@@ -53,12 +48,9 @@ const serverlessConfiguration: AWS = {
       concurrency: 10,
     },
     autoswagger: {
-      title: "string",
-      swaggerFiles: [],
-      swaggerPath: "string",
-      useStage: true,
-      basePath: "/products",
-      host: "https://dg6etd0ogl.execute-api.eu-west-1.amazonaws.com/dev",
+      title: "Shop Node Js Aws Serverless",
+      basePath: "/dev",
+      host: "dg6etd0ogl.execute-api.eu-west-1.amazonaws.com",
       schemes: ["https"],
     },
   },

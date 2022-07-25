@@ -6,7 +6,7 @@
   "scripts": {
     "test": "DOTENV_CONFIG_PATH=./.env.test jest --watchAll",
     "build:doc": "sls downloadDocumentation --outputFileName=swagger.json",
-    "deploy": "sls deploy && npm run build:doc"
+    "deploy": "sls deploy"
   },
   "engines": {
     "node": ">=16.0.0"

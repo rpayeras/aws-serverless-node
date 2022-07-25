@@ -2,6 +2,7 @@
 import { handlerPath } from "../../libs/handler-resolver";
 
 export default {
+  memorySize: 512,
   handler: `${handlerPath(__dirname)}/handler.main`,
   events: [
     {
@@ -20,15 +21,7 @@ export default {
         consumes: [],
         produces: ["application/json"],
         responseData: {
-          200: {
-            description: "List of products",
-            bodyType: "data",
-          },
-          400: {
-            description: "failed Post",
-            bodyType: "Error message",
-          },
-          502: "server error",
+          200: "Ok response with object",
         },
       },
     },
