@@ -11,7 +11,19 @@ serverless create --template aws-nodejs-typescript --path product-service
 ## Check functions locally
 
 ```bash
-serverless invoke local --function hello //With data --data '{"body": {"name":"John"}}' //With custom request --path ./src/functions/getProductsById/mock.json
+serverless invoke local --function hello //With data --data '{"body": {"name":"John"}}' //With custom events parameters --path ./src/functions/getProductsById/mock.json
+```
+
+### GetProductsList
+
+```bash
+sls invoke local --function getProductsList --path ./src/functions/getProductsList/mock.json
+```
+
+### GetProductsById
+
+```bash
+sls invoke local --function getProductsById --path ./src/functions/getProductsById/mock.json
 ```
 
 ## Working with each service

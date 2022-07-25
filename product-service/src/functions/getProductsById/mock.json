@@ -1,4 +1,5 @@
 {
+  "httpMethod": "GET",
   "pathParameters": {
     "productId": "1"
   }
