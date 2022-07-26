@@ -1,0 +1,6 @@
+{
+  "httpMethod": "GET",
+  "queryStringParameters": {
+    "name": "cloud-x-products.csv"
+  }
+}

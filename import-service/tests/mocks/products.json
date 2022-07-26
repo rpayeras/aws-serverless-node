@@ -1,0 +1,20 @@
+[
+  {
+    "id": "513e9593-e66f-4582-ae71-f902384425f4",
+    "name": "Product 1",
+    "description": "Description of product 1",
+    "price": 105
+  },
+  {
+    "id": "513e9593-e66f-4582-ae71-f902384425f5",
+    "name": "Product 2",
+    "description": "Description of product 2",
+    "price": 105
+  },
+  {
+    "id": "513e9593-e66f-4582-ae71-f902384425f6",
+    "name": "Product 3",
+    "description": "Description of product 3",
+    "price": 105
+  }
+]
