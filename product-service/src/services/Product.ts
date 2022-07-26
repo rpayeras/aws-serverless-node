@@ -6,7 +6,9 @@ export async function queryProductsList() {
 
   try {
     const result = await dbConnection.query<Product[]>(
-      "SELECT P.id, P.title, P.description, P.price, S.count FROM products P, stocks S WHERE P.id = S.product_id AND S.count > 0"
+      `SELECT P.id, P.title, P.description, P.price, S.count 
+      FROM products P, stocks S 
+      WHERE P.id = S.product_id`
     );
 
     client.release();
@@ -24,7 +26,9 @@ export async function queryProductsById(id: string) {
 
   try {
     const result = await client.query<Product>(
-      "SELECT id, title, description, price FROM products WHERE id = $1",
+      `SELECT P.id, P.title, P.description, P.price, S.count 
+      FROM products P, stocks S 
+      WHERE P.id = S.product_id AND P.id = $1`,
       [id]
     );
 
