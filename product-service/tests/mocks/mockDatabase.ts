@@ -16,7 +16,7 @@ export const createMockDatabase = async () => {
 
   await dbConnection.query(`create table stocks(
     product_id uuid primary key,
-    quantity integer not null default 0
+    count integer not null default 0
   )`);
 
   await dbConnection.query(
@@ -41,11 +41,11 @@ export const createMockDatabase = async () => {
 
   const stocks = await readJson("./tests/mocks/stocks.json");
 
-  stocks.forEach(({ productId, quantity }) => {
+  stocks.forEach(({ productId, count }) => {
     inserts.push(
       dbConnection.query(
-        "INSERT INTO stocks(product_id, quantity) VALUES ($1, $2)",
-        [productId, quantity]
+        "INSERT INTO stocks(product_id, count) VALUES ($1, $2)",
+        [productId, count]
       )
     );
   });

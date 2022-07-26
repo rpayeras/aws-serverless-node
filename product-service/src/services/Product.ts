@@ -6,7 +6,7 @@ export async function queryProductsList() {
 
   try {
     const result = await dbConnection.query<Product[]>(
-      "SELECT P.id, P.title, P.description, P.price, S.quantity FROM products P, stocks S WHERE P.id = S.product_id AND S.quantity > 0"
+      "SELECT P.id, P.title, P.description, P.price, S.count FROM products P, stocks S WHERE P.id = S.product_id AND S.count > 0"
     );
 
     client.release();
@@ -49,7 +49,7 @@ export async function createProductAndStock(productParam: Partial<Product>) {
 
     if (!id) throw new Error("Error creating product with stock");
 
-    await createStock({ productId: id, quantity: 0 });
+    await createStock({ productId: id, count: 0 });
 
     await client.query("COMMIT");
     client.release();
@@ -88,14 +88,14 @@ export async function createProduct(
 
 export async function createStock({
   productId,
-  quantity = 0,
+  count = 0,
 }: Stock): Promise<Stock> {
   const client = await dbConnection.connect();
 
   try {
     const result = await client.query(
-      "INSERT INTO stocks(product_id, quantity) VALUES ($1, $2) RETURNING product_id, quantity",
-      [productId, quantity]
+      "INSERT INTO stocks(product_id, count) VALUES ($1, $2) RETURNING product_id, count",
+      [productId, count]
     );
 
     client.release();

@@ -7,5 +7,5 @@ export interface Product {
 
 export interface Stock {
   productId: string;
-  quantity: number;
+  count: number;
 }
