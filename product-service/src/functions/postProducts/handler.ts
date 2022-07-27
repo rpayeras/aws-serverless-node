@@ -21,7 +21,7 @@ export const postProducts = async (event) => {
   }
 
   if (errors.length > 0) {
-    return getFormatErrorResponse(500, errors.join(", "));
+    return getFormatErrorResponse(400, errors.join(", "));
   } else {
     const product = await createProductAndStock({ title, description, price });
 
