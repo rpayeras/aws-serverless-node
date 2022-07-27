@@ -4,11 +4,12 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test": "docker-compose up -d && DOTENV_CONFIG_PATH=./.env.test jest --watchAll",
+    "test": "DOTENV_CONFIG_PATH=./.env.test jest --watchAll",
+    "test:local": "npm run test:getProductsList && npm run test test:getProductById && npm run test:postProducts",
+    "test:getProductsList": "sls invoke local --function getProductsList --path ./tests/mocks/requests/getProductsList.json",
+    "test:getProductById": "sls invoke local --function getProductById --path ./tests/mocks/requests/getProductById.json",
+    "test:postProducts": "sls invoke local --function postProducts --path ./tests/mocks/requests/postProducts.json",
     "deploy": "sls deploy"
-  },
-  "engines": {
-    "node": ">=16.0.0"
   },
   "dependencies": {
     "pg": "^8.7.3",

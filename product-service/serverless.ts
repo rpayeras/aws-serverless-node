@@ -21,6 +21,7 @@ const serverlessConfiguration: AWS = {
     runtime: "nodejs16.x",
     architecture: "arm64",
     region: "eu-west-1",
+    memorySize: 512,
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
