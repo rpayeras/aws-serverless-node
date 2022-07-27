@@ -12,7 +12,7 @@ export const readCsv = async (filePath) => {
   return new Promise((resolve, reject) => {
     const results = [];
 
-    fs.createReadStream(filePath)
+    fs.createReadStream(path.resolve(filePath))
       .pipe(csv())
       .on("data", (data) => results.push(data))
       .on("end", () => {
@@ -22,5 +22,12 @@ export const readCsv = async (filePath) => {
         console.log(err);
         reject("Error reading csv file");
       });
+  });
+};
+
+export const readStream = (filePath) => {
+  return fs.createReadStream(path.resolve(filePath)).on("error", (err) => {
+    console.log(err);
+    throw new Error("Error reading file");
   });
 };

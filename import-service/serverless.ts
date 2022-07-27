@@ -19,6 +19,7 @@ const serverlessConfiguration: AWS = {
     runtime: "nodejs16.x",
     architecture: "arm64",
     region: "eu-west-1",
+    memorySize: 512,
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -32,8 +33,8 @@ const serverlessConfiguration: AWS = {
         statements: [
           {
             Effect: "Allow",
-            Action: ["s3:PutObject"],
-            Resource: [`arn:aws:s3:::${process.env.AWS_BUCKET}/*`],
+            Action: ["s3:PutObject", "s3:GetObject"],
+            Resource: [`arn:aws:s3:::${process.env.AWS_CLIENT_BUCKET}/*`],
           },
         ],
       },
@@ -42,11 +43,11 @@ const serverlessConfiguration: AWS = {
   functions: {
     importProductFile,
   },
-  package: { individually: true },
+  package: { individually: true, patterns: ["tests/mocks/products.csv"] },
   custom: {
     esbuild: {
       bundle: true,
-      minify: true,
+      minify: false,
       sourcemap: true,
       exclude: ["aws-sdk"],
       target: "node16",

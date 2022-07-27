@@ -10,11 +10,11 @@ export default {
         description: "Returns a product by id",
         swaggerTags: ["Import Products"],
         method: "get",
-        path: "import/{name}",
+        path: "import",
         cors: true,
         request: {
           parameters: {
-            paths: {
+            querystrings: {
               name: true,
             },
           },
