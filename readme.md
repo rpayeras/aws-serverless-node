@@ -1,6 +1,6 @@
 # Shop node js aws serverless
 
-This project contains all serverless projects for deploy to aws, npm workspaces has been added to share dependencies between packages.
+This project contains all serverless projects for deploy to aws, npm workspaces has been added to share dependencies between packages, you must execute npm install from root.
 
 ## Env variables
 

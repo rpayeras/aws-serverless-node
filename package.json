@@ -12,7 +12,7 @@
     "import-service"
   ],
   "scripts": {
-    "test": "docker compose up -d && npm run test --workspace=product-service",
+    "test": "docker compose up -d && npm run test --workspace=product-service && npm run test --workspace=import-service",
     "deploy:product-service": "npm run deploy --workspace=product-service",
     "deploy:import-service": "npm run deploy --workspace=import-service"
   },
