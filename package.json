@@ -13,7 +13,8 @@
   ],
   "scripts": {
     "test": "docker compose up -d && npm run test --workspace=product-service",
-    "deploy:product-service": "npm run deploy --workspace=product-service"
+    "deploy:product-service": "npm run deploy --workspace=product-service",
+    "deploy:import-service": "npm run deploy --workspace=import-service"
   },
   "repository": {
     "type": "git",
