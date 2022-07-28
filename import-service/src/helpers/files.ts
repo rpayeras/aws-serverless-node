@@ -20,7 +20,7 @@ export const readCsv = async (filePath) => {
       })
       .on("error", (err) => {
         console.log(err);
-        reject("Error reading csv file");
+        reject(err);
       });
   });
 };

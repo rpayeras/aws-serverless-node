@@ -3,6 +3,7 @@ import "dotenv/config";
 import type { AWS } from "@serverless/typescript";
 
 import importProductFile from "@functions/importProductFile";
+import importFileParser from "@functions/importFileParser";
 
 const serverlessConfiguration: AWS = {
   service: "import-service",
@@ -33,8 +34,11 @@ const serverlessConfiguration: AWS = {
         statements: [
           {
             Effect: "Allow",
-            Action: ["s3:PutObject", "s3:GetObject"],
-            Resource: [`arn:aws:s3:::${process.env.AWS_CLIENT_BUCKET}/*`],
+            Action: ["s3:*"],
+            Resource: [
+              `arn:aws:s3:::${process.env.AWS_CLIENT_BUCKET}`,
+              `arn:aws:s3:::${process.env.AWS_CLIENT_BUCKET}/*`,
+            ],
           },
         ],
       },
@@ -42,6 +46,7 @@ const serverlessConfiguration: AWS = {
   },
   functions: {
     importProductFile,
+    importFileParser,
   },
   package: { individually: true, patterns: ["tests/mocks/products.csv"] },
   custom: {
