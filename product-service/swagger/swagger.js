@@ -106,6 +106,32 @@
           }
         }
       }
+    },
+    "/catalog": {
+      "get": {
+        "summary": "Manage items of SQS catalogitemsQueue",
+        "description": "Manage items of SQS catalogitemsQueue",
+        "tags": [
+          "Products"
+        ],
+        "operationId": "catalogBatchProcess.get.catalog",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of products"
+          },
+          "400": {
+            "description": "Failed response"
+          },
+          "502": {
+            "description": "server error"
+          }
+        }
+      }
     }
   },
   "definitions": {},

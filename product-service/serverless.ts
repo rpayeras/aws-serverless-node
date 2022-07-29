@@ -5,6 +5,7 @@ import type { AWS } from "@serverless/typescript";
 import getProductsList from "@functions/getProductsList";
 import getProductsById from "@functions/getProductsById";
 import postProducts from "@functions/postProducts";
+import catalogBatchProcess from "@functions/catalogBatchProcess";
 
 const serverlessConfiguration: AWS = {
   service: "product-service",
@@ -15,6 +16,7 @@ const serverlessConfiguration: AWS = {
     "serverless-offline",
     "serverless-dotenv-plugin",
   ],
+  package: { individually: true },
   useDotenv: true,
   provider: {
     name: "aws",
@@ -25,6 +27,20 @@ const serverlessConfiguration: AWS = {
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
+    },
+    iam: {
+      role: {
+        statements: [
+          {
+            Effect: "Allow",
+            Action: ["sqs:*"],
+            Resource: [
+              `arn:aws:sqs:::catalogItemsQueue`,
+              // Fn::GetAtt: [ NewSQSQueue, Arn ]
+            ],
+          },
+        ],
+      },
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
@@ -40,8 +56,18 @@ const serverlessConfiguration: AWS = {
     getProductsList,
     getProductsById,
     postProducts,
+    catalogBatchProcess,
   },
-  package: { individually: true },
+  resources: {
+    Resources: {
+      catalogItemsQueue: {
+        Type: "AWS::SQS::Queue",
+        Properties: {
+          QueueName: "catalogItemsQueue",
+        },
+      },
+    },
+  },
   custom: {
     esbuild: {
       bundle: true,
