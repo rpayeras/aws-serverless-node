@@ -27,7 +27,6 @@ export default {
           },
           400: {
             description: "Failed on upload",
-            bodyType: "Error message",
           },
         },
       },

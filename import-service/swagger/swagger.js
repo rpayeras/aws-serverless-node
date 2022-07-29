@@ -31,10 +31,7 @@
             "description": "File uploaded successfully"
           },
           "400": {
-            "description": "Failed on upload",
-            "schema": {
-              "$ref": "#/definitions/Error message"
-            }
+            "description": "Failed on upload"
           }
         }
       }
