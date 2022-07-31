@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["ESNext"],
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": true,
@@ -11,6 +11,7 @@
     "outDir": "lib",
     "resolveJsonModule": true,
     "types": ["jest", "node"],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "baseUrl": ".",
     "paths": {
       "@functions/*": ["src/functions/*"],
@@ -26,6 +27,7 @@
     ".vscode/**/*"
   ],
   "ts-node": {
-    "require": ["tsconfig-paths/register"]
+    "require": ["tsconfig-paths/register"],
+    "files": true
   }
 }

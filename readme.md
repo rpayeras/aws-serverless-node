@@ -2,7 +2,27 @@
 
 This project contains all serverless projects for deploy to aws
 
-## Create new service/function
+## Env variables
+
+Fill all variables from .env.sample and rename it to .env to test locally on each service folder, copy and rename it to .env.test for running testing suites
+
+## Testing and docker
+
+Docker image with postgres database is mandatory in order to run all tests and run lambdas locally [Docker docs](https://docs.docker.com/get-docker/)
+
+```bash
+docker-compose up -d
+```
+
+Run tests
+
+```bash
+npm run test
+```
+
+## Serverless operations
+
+### Create new service
 
 ```bash
 serverless create --template aws-nodejs-typescript --path product-service
@@ -10,40 +30,36 @@ serverless create --template aws-nodejs-typescript --path product-service
 
 ## Check functions locally
 
-```bash
-serverless invoke local --function hello //With data --data '{"body": {"name":"John"}}' //With custom events parameters --path ./src/functions/getProductsById/mock.json
-```
+We must enter into each service to develop and run lambdas.
 
-### GetProductsList
+### Products services
 
-```bash
-sls invoke local --function getProductsList --path ./src/functions/getProductsList/mock.json
-```
-
-### GetProductsById
+#### GetProductsList
 
 ```bash
-sls invoke local --function getProductsById --path ./src/functions/getProductsById/mock.json
+sls invoke local --function getProductsList --path ./tests/mocks/requests/getProductsList.json
 ```
 
-## Working with each service
+#### GetProductsById
 
-You should enter into each service folder and execute next operations:
+```bash
+sls invoke local --function getProductsById --path ./tests/mocks/requests/getProductsById.json
+```
 
-### Deploy
+#### PostProducts
+
+```bash
+sls invoke local --function postProducts --path ./tests/mocks/requests/postProducts.json
+```
+
+## Swagger
+
+Is generated automatically when we deploy to aws
+
+### Deploy service
+
+We must enter into each service to develop and run lambdas.
 
 ```bash
 npm run deploy
-```
-
-### Test
-
-```bash
-npm run test
-```
-
-### Generate swagger json
-
-```bash
-  npm run build:doc
 ```
