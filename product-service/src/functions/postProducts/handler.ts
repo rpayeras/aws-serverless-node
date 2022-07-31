@@ -9,7 +9,7 @@ import { createProductAndStock } from "../../services";
 export const postProducts = async (event) => {
   console.log(event);
 
-  const { title, description, price } = event.params;
+  const { title, description, price, count } = event.body;
   const errors: string[] = [];
 
   if (!title || !description) {
@@ -23,7 +23,12 @@ export const postProducts = async (event) => {
   if (errors.length > 0) {
     return getFormatErrorResponse(400, errors.join(", "));
   } else {
-    const product = await createProductAndStock({ title, description, price });
+    const product = await createProductAndStock({
+      title,
+      description,
+      price,
+      count,
+    });
 
     return getFormatResponse({
       data: product,

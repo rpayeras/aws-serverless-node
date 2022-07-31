@@ -41,19 +41,20 @@ export async function queryProductsById(id: string) {
   }
 }
 
-export async function createProductAndStock(productParam: Partial<Product>) {
+export async function createProductAndStock(productParam) {
   const client = await dbConnection.connect();
+  const { count = 0, ...restProduct } = productParam;
 
   try {
     await client.query("BEGIN");
 
-    const product = await createProduct(productParam);
+    const product = await createProduct(restProduct);
 
     const { id } = product;
 
     if (!id) throw new Error("Error creating product with stock");
 
-    await createStock({ productId: id, count: 0 });
+    await createStock({ productId: id, count });
 
     await client.query("COMMIT");
     client.release();
