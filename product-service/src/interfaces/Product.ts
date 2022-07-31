@@ -1,11 +1,11 @@
-export interface Product{
+export interface Product {
   id: string;
   title: string;
   description: string;
   price: number;
 }
 
-export interface Stock{
+export interface Stock {
   productId: string;
   count: number;
 }
