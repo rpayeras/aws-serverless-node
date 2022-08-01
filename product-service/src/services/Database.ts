@@ -19,11 +19,18 @@ import { Pool, types } from "pg";
 export const columnTypes = types;
 
 const poolOptions = {
-  host: process.env.PG_HOST,
-  user: process.env.PG_USER,
-  password: process.env.PG_PASSWORD,
-  database: process.env.PG_DATABASE,
-  port: process.env.PG_PORT,
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  port: process.env.PGPORT,
 };
 
-export const dbConnection = new Pool(poolOptions);
+const dbConnection = new Pool(poolOptions);
+
+dbConnection.on("error", (err) => {
+  console.error("Error on connection", err);
+  process.exit(-1);
+});
+
+export { dbConnection };

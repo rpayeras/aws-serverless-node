@@ -1,14 +1,11 @@
 import { queryProductsById } from "../../services";
 import validator from "validator";
 
-// import type { ValidatedEventAPIGatewayProxyEvent } from '../../libs/api-gateway';
 import {
   getFormatResponse,
   getFormatErrorResponse,
 } from "../../libs/api-gateway";
 import { middyfy } from "../../libs/lambda";
-
-// import schema from './schema';
 
 export const getProductsById = async (event) => {
   console.log(event);
