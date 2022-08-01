@@ -24,6 +24,7 @@ const serverlessConfiguration: AWS = {
     architecture: "arm64",
     region: "eu-west-1",
     memorySize: 512,
+    stage: "dev",
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -35,8 +36,9 @@ const serverlessConfiguration: AWS = {
             Effect: "Allow",
             Action: ["sqs:*"],
             Resource: [
-              `arn:aws:sqs:::catalogItemsQueue`,
-              // Fn::GetAtt: [ NewSQSQueue, Arn ]
+              {
+                "Fn::GetAtt": ["catalogItemsQueue", "Arn"],
+              },
             ],
           },
         ],
@@ -79,6 +81,9 @@ const serverlessConfiguration: AWS = {
       basePath: "/dev",
       host: "dg6etd0ogl.execute-api.eu-west-1.amazonaws.com",
       schemes: ["https"],
+    },
+    serverlessOffline: {
+      httpPort: 3002,
     },
   },
 };

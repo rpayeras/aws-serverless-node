@@ -66,6 +66,9 @@ const serverlessConfiguration: AWS = {
       host: "dg6etd0ogl.execute-api.eu-west-1.amazonaws.com",
       schemes: ["https"],
     },
+    serverlessOffline: {
+      httpPort: 3011,
+    },
   },
 };
 

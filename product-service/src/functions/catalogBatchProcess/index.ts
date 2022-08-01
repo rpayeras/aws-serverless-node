@@ -29,9 +29,13 @@ export default {
           502: "server error",
         },
       },
+    },
+    {
       sqs: {
-        queue: "catalogItemsQueue",
-        batchSize: 10,
+        arn: {
+          "Fn::GetAtt": ["catalogItemsQueue", "Arn"],
+        },
+        batchSize: 5,
       },
     },
   ],
