@@ -1,0 +1,9 @@
+{
+  "httpMethod": "POST",
+  "body": {
+    "title": "title test",
+    "description": "description test",
+    "price": 123,
+    "count": 10
+  }
+}

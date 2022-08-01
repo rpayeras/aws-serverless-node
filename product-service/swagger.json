@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "This api contains all endpoints to provide data for react frontend app",
-    "version" : "2022-07-12T09:49:52Z",
+    "version" : "2022-07-22T08:10:07Z",
     "title" : "product-service-dev",
     "contact" : {
       "name" : "Roberto Payeras"
@@ -25,6 +25,18 @@
             "description" : "400 response"
           }
         }
+      },
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "producApiGa9cv3rkrhKOwF",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/producApiGa9cv3rkrhKOwF"
+          }
+        } ],
+        "responses" : { }
       },
       "options" : {
         "consumes" : [ "application/json" ],
@@ -81,6 +93,23 @@
               }
             }
           }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "producApiGa9cv3rkrhKOwF" : {
+      "type" : "object",
+      "required" : [ "description", "price" ],
+      "properties" : {
+        "price" : {
+          "type" : "number"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
         }
       }
     }
