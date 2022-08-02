@@ -13,15 +13,12 @@ export const importProductFile = async (event) => {
   console.log(event);
 
   const bucketName = process.env.AWS_CLIENT_BUCKET;
-  const region = process.env.AWS_CLIENT_REGION;
+  const region = process.env.AWS_REGION;
   const { name: fileName } = event.queryStringParameters;
   const path = `uploaded/${fileName}`;
 
-  if (!bucketName || !region)
-    return getFormatErrorResponse(
-      400,
-      "Please set AWS_CLIENT_BUCKET and AWS_CLIENT_REGION"
-    );
+  if (!bucketName)
+    return getFormatErrorResponse(400, "Please provide AWS_CLIENT_BUCKET name");
   if (!fileName)
     return getFormatErrorResponse(400, "Please provide queryString 'name'");
 
@@ -31,7 +28,7 @@ export const importProductFile = async (event) => {
   };
 
   try {
-    const s3Client = new S3Client({});
+    const s3Client = new S3Client({ region });
     const uploadCommand = new PutObjectCommand(uploadParams);
 
     const signedUrl = await getSignedUrl(s3Client, uploadCommand, {

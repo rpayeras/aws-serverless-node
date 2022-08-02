@@ -40,6 +40,13 @@ const serverlessConfiguration: AWS = {
               `arn:aws:s3:::${process.env.AWS_CLIENT_BUCKET}/*`,
             ],
           },
+          {
+            Effect: "Allow",
+            Action: ["sqs:GetQueueUrl", "sqs:SendMessage"],
+            Resource: [
+              `arn:aws:sqs:${process.env.AWS_CLIENT_REGION}:${process.env.AWS_ACCOUNT_ID}:${process.env.AWS_CLIENT_CATALOG_ITEMS_QUEUE}`,
+            ],
+          },
         ],
       },
     },
