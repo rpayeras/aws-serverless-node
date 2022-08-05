@@ -1,0 +1,20 @@
+{
+  "name": "import-service",
+  "version": "1.0.0",
+  "description": "Serverless aws-nodejs-typescript template",
+  "main": "serverless.ts",
+  "scripts": {
+    "test": "DOTENV_CONFIG_PATH=./.env.test jest --watchAll",
+    "test:importProductFile": "sls invoke local --function importProductFile --path ./tests/mocks/requests/importProductFile.json",
+    "test:importFileParser": "sls invoke local --function importFileParser --path ./tests/mocks/requests/importFileParser.json",
+    "deploy": "sls deploy"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0"
+  },
+  "devDependencies": {
+    "aws-sdk-client-mock": "^1.0.0"
+  },
+  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "license": "MIT"
+}

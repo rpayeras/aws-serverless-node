@@ -1,0 +1,15 @@
+{
+  "Records": [
+    {
+      "messageId": "3e21cef3-01e4-48ce-98e8-d7a0e00f8305",
+      "receiptHandle": "AQEBsjPxGowchHbvUuRBKPquXKfT37ONUnBDakIhRx0DwS+DFctNxV8pnb9gLtXsgSsLq7Osq3M3zQ4NUQDHhJ3WiGuCtYlbjSC0pl+Vio4moiEvMI060q5ldKDacxXNolqe10gevbJ7xKKFWvwWsK+gVfc+mqX3jRtHgz/H5/XIUET9vKWtiS2m0dmTrrRCbKK+H17G13J42h4HHcXqEv/K0nPRGdqfUVasR0u1OahJ7KfbmGArI6F59PkheT00vAWzDLNfAFIuiA4E6VHzC/rnQsHX26pZp3c+3t8665TZoSyKge7NvTjTS12kcBV+mqhn7oXVaqBIKbvbknjXRJ/2xrX8jXpvlEtGFKpVBrX1kQaJB9kCEKhkcSLOt0myD/bemrh2WXRtDsfqf9w4nN8+pg==",
+      "body": "[{\"title\":\"Product 11\",\"description\":\"Description of product 11\",\"price\":\"25\"}]",
+      "attributes": [],
+      "messageAttributes": {},
+      "md5OfBody": "ba83f498d13b594690b71949ca73e031",
+      "eventSource": "aws:sqs",
+      "eventSourceARN": "arn:aws:sqs:eu-west-1:471876932224:catalogItemsQueue",
+      "awsRegion": "eu-west-1"
+    }
+  ]
+}
