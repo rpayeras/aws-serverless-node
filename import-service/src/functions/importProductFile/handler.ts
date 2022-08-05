@@ -22,18 +22,19 @@ export const importProductFile = async (event) => {
   if (!fileName)
     return getFormatErrorResponse(400, "Please provide queryString 'name'");
 
-  const uploadParams = {
-    Bucket: bucketName,
-    Key: path,
-  };
-
   try {
     const s3Client = new S3Client({ region });
-    const uploadCommand = new PutObjectCommand(uploadParams);
 
-    const signedUrl = await getSignedUrl(s3Client, uploadCommand, {
-      expiresIn: 3600,
-    });
+    const signedUrl = await getSignedUrl(
+      s3Client,
+      new PutObjectCommand({
+        Bucket: bucketName,
+        Key: path,
+      }),
+      {
+        expiresIn: 3600,
+      }
+    );
 
     return getFormatResponse({
       data: signedUrl,

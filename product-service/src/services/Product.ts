@@ -57,15 +57,15 @@ export async function createProductAndStock(productParam) {
     await createStock({ productId: id, count });
 
     await client.query("COMMIT");
-    client.release();
 
     return product;
-  } catch (e) {
+  } catch (err) {
+    console.log(err);
     await client.query("ROLLBACK");
-    client.release();
-    throw e;
+
+    throw err;
   } finally {
-    // dbConnection.release();
+    client.release();
   }
 }
 

@@ -13,6 +13,7 @@
     "deploy": "sls deploy"
   },
   "dependencies": {
+    "@aws-sdk/client-sns": "^3.142.0",
     "@aws-sdk/client-sqs": "^3.137.0",
     "pg": "^8.7.3",
     "pg-native": "^3.0.0",
