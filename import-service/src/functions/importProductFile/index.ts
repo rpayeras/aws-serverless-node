@@ -11,6 +11,12 @@ export default {
         swaggerTags: ["Import Products"],
         method: "get",
         path: "import",
+        authorizer: {
+          name: "basicAuthorizer",
+          resultTtlInSeconds: 0,
+          identitySource: "method.request.header.Authorization",
+          type: "request",
+        },
         cors: true,
         request: {
           parameters: {

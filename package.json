@@ -9,7 +9,8 @@
   },
   "workspaces": [
     "product-service",
-    "import-service"
+    "import-service",
+    "authorization-service"
   ],
   "scripts": {
     "test": "docker compose up -d && npm run test --workspace=product-service && npm run test --workspace=import-service",

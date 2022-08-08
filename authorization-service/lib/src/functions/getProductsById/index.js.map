@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../src/functions/getProductsById/index.ts"],"names":[],"mappings":";;AACA,6DAAqD;AAErD,kBAAe;IACb,OAAO,EAAE,GAAG,IAAA,8BAAW,EAAC,SAAS,CAAC,eAAe;IACjD,MAAM,EAAE;QACN;YACE,IAAI,EAAE;gBACJ,MAAM,EAAE,KAAK;gBACb,IAAI,EAAE,sBAAsB;aAC7B;SACF;KACF;CACF,CAAC"}

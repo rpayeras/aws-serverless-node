@@ -1,0 +1,24 @@
+{
+  "name": "product-service",
+  "version": "1.0.0",
+  "description": "Serverless aws-nodejs-typescript template",
+  "main": "serverless.ts",
+  "scripts": {
+    "test": "DOTENV_CONFIG_PATH=./.env.test jest --watchAll",
+    "test:local": "npm run test:getProductsList && npm run test test:getProductById && npm run test:postProducts",
+    "test:getProductsList": "sls invoke local --function getProductsList --path ./tests/mocks/requests/getProductsList.json",
+    "test:getProductById": "sls invoke local --function getProductById --path ./tests/mocks/requests/getProductById.json",
+    "test:postProducts": "sls invoke local --function postProducts --path ./tests/mocks/requests/postProducts.json",
+    "test:catalogBatchProcess": "sls invoke local --function catalogBatchProcess --path ./tests/mocks/requests/catalogBatchProcess.json",
+    "deploy": "sls deploy"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sns": "^3.142.0",
+    "@aws-sdk/client-sqs": "^3.137.0",
+    "pg": "^8.7.3",
+    "pg-native": "^3.0.0",
+    "pg-types": "^4.0.0"
+  },
+  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "license": "MIT"
+}
