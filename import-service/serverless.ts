@@ -50,6 +50,9 @@ const serverlessConfiguration: AWS = {
         ],
       },
     },
+    logs: {
+      restApi: true,
+    },
   },
   functions: {
     importProductFile,

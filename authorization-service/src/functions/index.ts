@@ -1,1 +1,1 @@
-export { default as getProductsById } from "./basicAuthorizer/index";
+export { default as basicAuthorizer } from "./basicAuthorizer/index";

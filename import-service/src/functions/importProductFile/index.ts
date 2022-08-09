@@ -12,7 +12,8 @@ export default {
         method: "get",
         path: "import",
         authorizer: {
-          name: "basicAuthorizer",
+          arn: `arn:aws:lambda:${process.env.AWS_CLIENT_REGION}:${process.env.AWS_ACCOUNT_ID}:function:${process.env.AWS_CLIENT_BASIC_AUTHORIZER}`,
+          // managedExternally: false,
           resultTtlInSeconds: 0,
           identitySource: "method.request.header.Authorization",
           type: "request",

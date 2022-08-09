@@ -26,28 +26,6 @@ const serverlessConfiguration: AWS = {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
     },
-    // iam: {
-    //   role: {
-    //     statements: [
-    //       {
-    //         Effect: "Allow",
-    //         Action: ["sqs:*"],
-    //         Resource: [
-    //           {
-    //             "Fn::GetAtt": ["catalogItemsQueue", "Arn"],
-    //           },
-    //         ],
-    //       },
-    //       {
-    //         Effect: "Allow",
-    //         Action: ["sns:*"],
-    //         Resource: [
-    //           `arn:aws:sns:${process.env.AWS_CLIENT_REGION}:${process.env.AWS_ACCOUNT_ID}:${process.env.AWS_CLIENT_SNS_CREATED_PRODUCTS}`,
-    //         ],
-    //       },
-    //     ],
-    //   },
-    // },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
@@ -56,21 +34,11 @@ const serverlessConfiguration: AWS = {
   functions: {
     basicAuthorizer,
   },
-  // resources: {
-  //   Resources: {
-  //     catalogItemsQueue: {
-  //       Type: "AWS::SQS::Queue",
-  //       Properties: {
-  //         QueueName: "catalogItemsQueue",
-  //       },
-  //     },
-  //   },
-  // },
   custom: {
     esbuild: {
       bundle: true,
-      minify: true,
-      sourcemap: true,
+      minify: false,
+      sourcemap: false,
       exclude: ["aws-sdk"],
       target: "node16",
       define: { "require.resolve": undefined },
