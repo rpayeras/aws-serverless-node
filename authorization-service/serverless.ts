@@ -34,6 +34,63 @@ const serverlessConfiguration: AWS = {
   functions: {
     basicAuthorizer,
   },
+  resources: {
+    Resources: {
+      CognitoUserPool: {
+        Type: "AWS::Cognito::UserPool",
+        Properties: {
+          UserPoolName: "authorization-pool",
+          UsernameAttributes: ["email"],
+          AutoVerifiedAttributes: ["email"],
+          Schema: [
+            {
+              Name: "email",
+              Required: true,
+            },
+          ],
+          EmailConfiguration: {
+            EmailSendingAccount: "COGNITO_DEFAULT",
+          },
+        },
+      },
+      CognitoUserPoolClient: {
+        Type: "AWS::Cognito::UserPoolClient",
+        Properties: {
+          ClientName: "authorization-pool-client",
+          UserPoolId: {
+            Ref: "CognitoUserPool",
+          },
+          AllowedOAuthFlowsUserPoolClient: true,
+          AllowedOAuthFlows: ["implicit"],
+          AllowedOAuthScopes: [
+            "phone",
+            "email",
+            "openid",
+            "profile",
+            "aws.cognito.signin.user.admin",
+          ],
+          SupportedIdentityProviders: [
+            "COGNITO",
+            // "Facebook",
+            // "Google",
+            // "SignInWithApple",
+            // "LoginWithAmazon",
+          ],
+          CallbackURLs: [process.env.FRONTEND_URL],
+          LogoutURLs: [process.env.FRONTEND_URL],
+        },
+      },
+      CognitoUserPoolDomain: {
+        Type: "AWS::Cognito::UserPoolDomain",
+        Properties: {
+          Domain: "authorization-pool-domain",
+          UserPoolId: {
+            Ref: "CognitoUserPool",
+          },
+        },
+      },
+    },
+  },
   custom: {
     esbuild: {
       bundle: true,

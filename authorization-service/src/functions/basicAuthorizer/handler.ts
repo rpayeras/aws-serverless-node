@@ -2,6 +2,7 @@ export const basicAuthorizer = async (event) => {
   console.log(event);
 
   let auth = "Deny";
+
   const tokenUnparsed = event.headers.Authorization.split(" ")[1];
   const token = Buffer.from(tokenUnparsed, "base64").toString("ascii");
   const envName = token.split(":")[0];
@@ -12,14 +13,14 @@ export const basicAuthorizer = async (event) => {
   }
 
   const authResponse = {
-    principalId: "rpayeras",
+    principalId: "serverless-admin",
     policyDocument: {
       Version: "2012-10-17",
       Statement: [
         {
           Action: "execute-api:Invoke",
           Resource: [
-            "arn:aws:execute-api:eu-west-1:471876932224:elk4qd7jzh/*/GET/import",
+            `arn:aws:execute-api:${process.env.AWS_CLIENT_REGION}:${process.env.AWS_ACCOUNT_ID}:${process.env.AWS_API_PRODUCTS}/*/GET/import`,
           ],
           Effect: auth,
         },

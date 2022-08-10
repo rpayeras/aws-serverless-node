@@ -23,6 +23,11 @@ export default {
         responseData: {
           200: "Ok response with object",
         },
+        authorizer: {
+          name: "cognitoAuthorizer",
+          type: "COGNITO_USER_POOLS",
+          arn: "arn:aws:cognito-idp:eu-west-1:471876932224:userpool/eu-west-1_R6xeCKBRS",
+        },
       },
     },
   ],
