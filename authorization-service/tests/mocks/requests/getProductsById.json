@@ -1,0 +1,6 @@
+{
+  "httpMethod": "GET",
+  "pathParameters": {
+    "productId": "a9bf4740-dbb5-404a-9827-0f66074c4de1s"
+  }
+}

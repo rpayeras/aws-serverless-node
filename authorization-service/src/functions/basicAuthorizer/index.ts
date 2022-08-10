@@ -1,0 +1,7 @@
+// import schema from './schema';
+import { handlerPath } from "@libs/handler-resolver";
+
+export default {
+  memorySize: 512,
+  handler: `${handlerPath(__dirname)}/handler.main`,
+};
